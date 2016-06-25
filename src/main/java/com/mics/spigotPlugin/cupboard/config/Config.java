@@ -25,7 +25,7 @@ public enum Config {
 	WP_PIGZOMBIE_DROP_NETHER_WART("world-protect.pigzombie-drop-nether-wart.enable", true, "let pig zombie drop nether-wart in nether"),
 	WP_PIGZOMBIE_DROP_NETHER_WART_PERCENT("world-protect.pigzombie-drop-nether-wart.percent", 0.3, "0~1, this mean when drop gold nugget, how many percent will turn it to nether wart."),
 	
-	PP_PLAYER_INVENTORY_RECOVERY_PERCENT("player-protect.player-inventory-recovery-percent", 0.5, "recovery player inventory if they death"),
+	PP_PLAYER_INVENTORY_RECOVERY_PERCENT("player-protect.player-inventory-recovery-percent", 0.5, "recovery player inventory if they death (0 to disable)"),
 	
 	WB_ENABLE("world-border.enable", true, "enable world border system? (use this system please DO NOT modify time)"),
 	WB_INIT_RADIUS("world-border.init-radius", 1200, "it mean -x ~ x "),
