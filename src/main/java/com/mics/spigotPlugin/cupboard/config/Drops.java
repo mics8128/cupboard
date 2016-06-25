@@ -57,6 +57,12 @@ public class Drops{
 		  e.printStackTrace();
 	  }
   }
+  private void updateChanceCount(){
+	  chance_count = 0.0;
+	  for(Drop d : drops){
+		  chance_count += d.drop_chance;
+	  }
+  }
   
   private void load()
   {
@@ -99,6 +105,7 @@ public class Drops{
   	public static void addDrops(ItemStack item, double chance) {
   		Drop newDrop = new Drop(item, chance);
   		instance.drops.add(newDrop);
+  		instance.updateChanceCount();
   		instance.save();
   	}
 

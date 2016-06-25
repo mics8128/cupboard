@@ -12,7 +12,7 @@ import com.mics.spigotPlugin.cupboard.config.Config;
 import com.mics.spigotPlugin.cupboard.config.Drops;
 import com.mics.spigotPlugin.cupboard.config.Locales;
 import com.mics.spigotPlugin.cupboard.data.CupboardsData;
-import com.mics.spigotPlugin.cupboard.entity.LandedPackageEntity;
+import com.mics.spigotPlugin.cupboard.entity.PackageEntity;
 import com.mics.spigotPlugin.cupboard.command.AirdropCommand;
 import com.mics.spigotPlugin.cupboard.command.KillCommand;
 import com.mics.spigotPlugin.cupboard.listener.CupboardEntityProtectListener;
@@ -136,7 +136,7 @@ public class Cupboard extends JavaPlugin implements Listener {
 	}
     @Override
     public void onDisable() {
-    	LandedPackageEntity.removeAll(); //remove all airdrop
+    	PackageEntity.removeAll(); //remove all airdrop
     }
     
     public boolean isOP(Player p){

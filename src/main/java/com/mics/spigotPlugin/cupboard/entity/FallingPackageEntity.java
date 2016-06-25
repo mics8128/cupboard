@@ -1,5 +1,7 @@
 package com.mics.spigotPlugin.cupboard.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.bukkit.Color;
@@ -26,10 +28,12 @@ public class FallingPackageEntity extends PackageEntity {
 	FallingBlock blocky = null;
 	
 	public FallingPackageEntity(Location loc, Material m, int offset){
+		super();
 		summon(applyOffset(loc, offset), m);
 	}
 	
 	public FallingPackageEntity(Location loc, Material m){
+		super();
 		summon(loc, m);
 	}
 	
@@ -43,6 +47,7 @@ public class FallingPackageEntity extends PackageEntity {
 		material = m;
 		
 		blocky = world.spawnFallingBlock(startLoc, material, (byte) 0);
+		blocky.setDropItem(false);
 		summonSpawnFireworks();
 		
 		tick();
@@ -51,6 +56,7 @@ public class FallingPackageEntity extends PackageEntity {
 	@SuppressWarnings("deprecation")
 	protected void tick(){
 		if(world.getBlockAt(blocky.getLocation().clone().add(0, -1, 0)).getType() == Material.AIR){
+			counter++;
 			world.spawnParticle(Particle.SMOKE_NORMAL, blocky.getLocation(), 50, 0.1, 0.1, 0.1, 0.1);
 			
 			if (blocky.isDead()){
@@ -66,12 +72,17 @@ public class FallingPackageEntity extends PackageEntity {
 			
 			retick();
 		} else {
-			remove();
+			turnLandedPackage();
 		}
 	}
 	
 	@Override
 	public void remove() {
+		super.remove();
+		blocky.remove();
+	}
+	
+	public void turnLandedPackage() {
 		blocky.remove();
 		new LandedPackageEntity(blocky.getLocation(), blocky.getMaterial());
 	}
@@ -131,7 +142,22 @@ public class FallingPackageEntity extends PackageEntity {
 
 		loc.add(xOff, 0, zOff);
 		return loc;
-		
+	}
+
+	public static List<FallingPackageEntity> getFallingPackageEntities(){
+		List<FallingPackageEntity> entities = new ArrayList<FallingPackageEntity>();
+		if(allPackageEntities != null){
+			for(PackageEntity e : PackageEntity.allPackageEntities){
+				if(e instanceof FallingPackageEntity){
+					entities.add((FallingPackageEntity) e);
+				}
+			}
+		}
+		return entities;
+	}
+	
+	public Location getLocation(){
+		return startLoc.clone();
 	}
 	
 

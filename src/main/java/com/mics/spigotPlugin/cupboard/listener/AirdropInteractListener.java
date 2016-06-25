@@ -14,12 +14,14 @@ import org.bukkit.entity.Firework;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import com.mics.spigotPlugin.cupboard.Cupboard;
 import com.mics.spigotPlugin.cupboard.config.Config;
 import com.mics.spigotPlugin.cupboard.config.Drops;
+import com.mics.spigotPlugin.cupboard.entity.FallingPackageEntity;
 
 public class AirdropInteractListener extends MyListener {
 	public AirdropInteractListener(Cupboard instance) {
@@ -66,4 +68,15 @@ public class AirdropInteractListener extends MyListener {
 		}, 2);
 		
 	}
+	
+	@EventHandler
+	private void onChunkUnload(ChunkUnloadEvent e){
+		for(FallingPackageEntity entity : FallingPackageEntity.getFallingPackageEntities()){
+			if(e.getChunk().equals(entity.getLocation().getChunk()))
+				e.setCancelled(true);
+		}
+	}
+	
+	//let dropping airdrop chunk loaded
+	
 }
