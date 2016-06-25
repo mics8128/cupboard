@@ -22,7 +22,7 @@ import com.mics.spigotPlugin.cupboard.listener.CupboardBlockProtectListener;
 import com.mics.spigotPlugin.cupboard.listener.CupboardUseProtectListener;
 import com.mics.spigotPlugin.cupboard.listener.GoldBlockListener;
 import com.mics.spigotPlugin.cupboard.listener.MyListener;
-import com.mics.spigotPlugin.cupboard.listener.RespawnListener;
+import com.mics.spigotPlugin.cupboard.listener.PlayerProtectListener;
 import com.mics.spigotPlugin.cupboard.listener.SuicideListener;
 import com.mics.spigotPlugin.cupboard.listener.TNTCraftListener;
 import com.mics.spigotPlugin.cupboard.listener.TNTExplosionListener;
@@ -69,7 +69,7 @@ public class Cupboard extends JavaPlugin implements Listener {
         registedObject.add(new CupboardUseProtectListener(this));
         registedObject.add(new GoldBlockListener(this));
         registedObject.add(new WorldProtectListener(this));
-        registedObject.add(new RespawnListener(this));
+        registedObject.add(new PlayerProtectListener(this));
         registedObject.add(new SuicideListener(this));
         registedObject.add(new AirdropInteractListener(this));
         

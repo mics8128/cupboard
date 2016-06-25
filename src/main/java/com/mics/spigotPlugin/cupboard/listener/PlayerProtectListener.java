@@ -10,8 +10,8 @@ import com.mics.spigotPlugin.cupboard.Cupboard;
 import com.mics.spigotPlugin.cupboard.config.Locales;
 
 
-public class RespawnListener extends MyListener {
-	public RespawnListener(Cupboard instance)
+public class PlayerProtectListener extends MyListener {
+	public PlayerProtectListener(Cupboard instance)
 	{
 		super(instance);
 	}
